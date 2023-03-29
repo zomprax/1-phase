@@ -1,0 +1,56 @@
+# Inicializar una base de datos vacía
+db = {}
+
+# Función para registrar un nuevo usuario
+def registrar_usuario():
+    nombre_usuario = input("Introduce tu nombre de usuario: ")
+    password = input("Introduce tu contraseña: ")
+
+    # Verificar si el usuario ya existe en la base de datos
+    if nombre_usuario in db:
+        print("Este nombre de usuario ya está registrado en la base de datos.")
+    else:
+        # Agregar el nuevo usuario a la base de datos
+        db[nombre_usuario] = password
+        print(f"Usuario registrado con éxito: {nombre_usuario}")
+
+
+# Función para mostrar la información de los usuarios
+def mostrar_usuarios():
+    print("Usuarios registrados:")
+    for nombre_usuario, password in db.items():
+        print(f"{nombre_usuario}: {password}")
+
+
+# Función para autenticar a un usuario
+def autenticar_usuario():
+    nombre_usuario = input("Introduce tu nombre de usuario: ")
+    password = input("Introduce tu contraseña: ")
+
+    # Verificar si el usuario está en la base de datos y si la contraseña es correcta
+    if nombre_usuario in db and password == db[nombre_usuario]:
+        print(f"Bienvenido/a {nombre_usuario}!")
+    else:
+        print("El nombre de usuario o la contraseña son incorrectos.")
+
+
+# Menú principal
+while True:
+    print("\n1. Registrar usuario")
+    print("2. Mostrar usuarios")
+    print("3. Autenticar usuario")
+    print("4. Salir")
+
+    opcion = input("Selecciona una opción: ")
+
+    if opcion == '1':
+        registrar_usuario()
+    elif opcion == '2':
+        mostrar_usuarios()
+    elif opcion == '3':
+        autenticar_usuario()
+    elif opcion == '4':
+        break
+    else:
+        print("Opción inválida. Por favor, selecciona una opción del menú.")
+
